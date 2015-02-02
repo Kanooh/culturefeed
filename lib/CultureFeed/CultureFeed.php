@@ -782,7 +782,7 @@ class CultureFeed implements ICultureFeed {
    */
   public function getMailing($id) {
 
-    $result = $this->oauth_client->authenticatedGetAsXml('mailing/' . $id);
+    $result = $this->oauth_client->authenticatedGetAsXml('mailing/v2/' . $id);
 
     try {
       $xml = new CultureFeed_SimpleXMLElement($result);
@@ -848,7 +848,7 @@ class CultureFeed implements ICultureFeed {
 
     unset($data['id']);
 
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $id, $data);
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $id, $data);
   }
 
   /**
@@ -860,7 +860,7 @@ class CultureFeed implements ICultureFeed {
    *   ID of the mailing to disable.
    */
   public function disableMailing($id) {
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $id . '/disable');
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $id . '/disable');
   }
 
   /**
@@ -872,7 +872,7 @@ class CultureFeed implements ICultureFeed {
    *   ID of the mailing to delete.
    */
   public function deleteMailing($id) {
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $id . '/delete');
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $id . '/delete');
   }
 
   /**
@@ -893,7 +893,7 @@ class CultureFeed implements ICultureFeed {
 
     $data = $query->toPostData();
 
-    $result = $this->oauth_client->authenticatedGetAsXml('mailing/list', $data);
+    $result = $this->oauth_client->authenticatedGetAsXml('mailing/v2/list', $data);
 
     try {
       $xml = new CultureFeed_SimpleXMLElement($result);
@@ -917,7 +917,7 @@ class CultureFeed implements ICultureFeed {
    *   ID of the mailing to subscribe to.
    */
   public function sendTestMailing($user_id, $mailing_id) {
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $mailing_id . '/test', array('userId' => $user_id));
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $mailing_id . '/test', array('userId' => $user_id));
   }
 
   /**
@@ -929,7 +929,7 @@ class CultureFeed implements ICultureFeed {
    *   ID of the mailing to send.
    */
   public function sendMailing($id) {
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $id . '/send');
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $id . '/send');
   }
 
   /**
@@ -950,7 +950,7 @@ class CultureFeed implements ICultureFeed {
 
     $data = $query->toPostData();
 
-    $result = $this->oauth_client->authenticatedPostAsXml('mailing/search', $data);
+    $result = $this->oauth_client->authenticatedPostAsXml('mailing/v2/search', $data);
 
     try {
       $xml = new CultureFeed_SimpleXMLElement($result);
@@ -973,7 +973,7 @@ class CultureFeed implements ICultureFeed {
    *   ID of the mailing to subscribe to.
    */
   public function subscribeToMailing($user_id, $mailing_id) {
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $mailing_id . '/subscribe', array('userId' => $user_id));
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $mailing_id . '/subscribe', array('userId' => $user_id));
   }
 
   /**
@@ -987,7 +987,7 @@ class CultureFeed implements ICultureFeed {
    *   ID of the mailing to unsubscribe from.
    */
   public function unsubscribeFromMailing($user_id, $mailing_id) {
-    $this->oauth_client->authenticatedPostAsXml('mailing/' . $mailing_id . '/unsubscribe', array('userId' => $user_id));
+    $this->oauth_client->authenticatedPostAsXml('mailing/v2/' . $mailing_id . '/unsubscribe', array('userId' => $user_id));
   }
 
   /**
@@ -1004,7 +1004,7 @@ class CultureFeed implements ICultureFeed {
    */
   public function getMailingSubscriptions($user_id) {
 
-    $result = $this->oauth_client->authenticatedGetAsXml('mailing/subscriptions/' . $user_id);
+    $result = $this->oauth_client->authenticatedGetAsXml('mailing/v2/subscriptions/' . $user_id);
 
     try {
       $xml = new CultureFeed_SimpleXMLElement($result);
