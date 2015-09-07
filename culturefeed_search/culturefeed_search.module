@@ -14,7 +14,8 @@ define('CULTUREFEED_SEARCH_CDB_DEFAULT_VERSION', '3.2');
 // Default proximity search range.
 define('CULTUREFEED_SEARCH_DEFAULT_PROXIMITY_RANGE', 20);
 
-module_load_include('inc', 'culturefeed_search', 'includes/helpers');
+require_once 'includes/helpers.inc';
+require_once __DIR__ . '/../culturefeed.common.inc';
 
 /**
  * Implements hook_init().
@@ -60,7 +61,7 @@ function culturefeed_search_menu() {
     'type' => MENU_CALLBACK,
     'file' => 'includes/pages.inc',
   );
-  
+
   // Autocomplete path for all actors from production (temporary workaround for PWK-213)
   $items['autocomplete/culturefeed/actor-suggestions/all'] = array(
     'title' => 'Culturefeed suggestions autocomplete',

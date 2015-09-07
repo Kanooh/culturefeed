@@ -463,16 +463,18 @@ function culturefeed_agenda_get_map_render_array(\CultuurNet\Search\ActivityStat
   }
 
   // Fetch the user info
-  $cf_account = NULL;
-  try {
-    $cf_account = DrupalCultureFeed::getLoggedInUser();
-  }
-  catch (Exception $e) {
-    watchdog_exception('culturefeed_agenda', $e);
-  }
+  if (module_exists('culturefeed')) {
+    $cf_account = NULL;
+    try {
+      $cf_account = DrupalCultureFeed::getLoggedInUser();
+    }
+    catch (Exception $e) {
+      watchdog_exception('culturefeed_agenda', $e);
+    }
 
-  if ($cf_account) {
-    $variables['to_address'] = $cf_account->street . ', ' . $cf_account->zip . ' ' . $cf_account->city;
+    if ($cf_account) {
+      $variables['to_address'] = $cf_account->street . ', ' . $cf_account->zip . ' ' . $cf_account->city;
+    }
   }
 
   drupal_set_breadcrumb(array(l(t('Home'), NULL), $variables['link'], 'Stratenplan'));
