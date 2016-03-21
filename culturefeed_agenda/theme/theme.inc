@@ -297,7 +297,7 @@ function _culturefeed_agenda_preprocess_agenda(&$variables) {
           $pictures[] = $image->getHLink();
           if ($image->isMain() && empty($main_picture)) {
             $main_picture = $image->getHLink();
-            $main_picture_cr = $photo->getCopyright();
+            $main_picture_cr = $image->getCopyright();
           }
         }
       }
@@ -493,7 +493,7 @@ function _culturefeed_agenda_preprocess_agenda_detail(&$variables) {
       }
     }
   }
-  
+
   // Enhance event-details with UiTPAS-information if culturefeed_uitpas is enabled
   if (module_exists('culturefeed_uitpas')) {
     $uitpas_event = culturefeed_uitpas_get_uitpas_event($item);
