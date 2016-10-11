@@ -316,7 +316,7 @@ function culturefeed_mailing_block_info() {
 /**
  * Implements hook_block_view().
  */
-function culturefeed_mailing_block_view($delta) {
+function culturefeed_mailing_block_view($delta, $zip) {
 
   module_load_include('inc', 'culturefeed_mailing', 'culturefeed_mailing.blocks');
 
@@ -327,7 +327,7 @@ function culturefeed_mailing_block_view($delta) {
   }
 
   if (function_exists('culturefeed_mailing_block_' . $delta . '_view')) {
-    return call_user_func('culturefeed_mailing_block_' . $delta . '_view');
+    return call_user_func_array('culturefeed_mailing_block_' . $delta . '_view', array($zip));
   }
 
 }
@@ -410,7 +410,7 @@ function culturefeed_mailing_subscribe_user_light($email, $mailing_id, $zip = ''
 /**
  * Form callback: Show the newsletter form as a block.
  */
-function culturefeed_mailing_newsletter_block_form($form, &$form_state) {
+function culturefeed_mailing_newsletter_block_form($form, &$form_state, $prefill_zip) {
 
   $form = array();
 
@@ -457,6 +457,7 @@ function culturefeed_mailing_newsletter_block_form($form, &$form_state) {
       if ($account) {
         $zipcode = !empty($account->zip) ? $account->zip : '';
       }
+      $zipcode = !empty($prefill_zip) ? $prefill_zip : $zipcode;
 
       $form['zip'] = array(
         '#type' => 'textfield',
