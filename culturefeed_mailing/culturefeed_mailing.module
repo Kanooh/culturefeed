@@ -316,9 +316,15 @@ function culturefeed_mailing_block_info() {
 /**
  * Implements hook_block_view().
  */
-function culturefeed_mailing_block_view($delta, $zip) {
+function culturefeed_mailing_block_view($delta) {
 
   module_load_include('inc', 'culturefeed_mailing', 'culturefeed_mailing.blocks');
+
+  if(isset($zip)) {
+    $zip_code = $zip;
+  } else {
+    $zip = '';
+  }
 
   if (function_exists('culturefeed_mailing_block_' . $delta . '_is_visible')) {
     if (!call_user_func('culturefeed_mailing_block_' . $delta . '_is_visible')) {
