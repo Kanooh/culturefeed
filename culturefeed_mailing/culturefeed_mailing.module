@@ -570,7 +570,7 @@ function culturefeed_mailing_load($id) {
  */
 function culturefeed_template_load($id) {
   try {
-    return DrupalCultureFeed_Mailing::getTemplate($id);
+    return DrupalCultureFeed::getTemplate($id);
   }
   catch (Exception $e) {
     return FALSE;
